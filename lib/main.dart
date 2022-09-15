@@ -14,6 +14,9 @@ class WebMoneyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(
+        SystemUiOverlayStyle(statusBarColor: AppColors.backgroundColor));
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'WebMoney',

@@ -25,9 +25,9 @@ class WebMoneyApp extends StatelessWidget {
         fontFamily: 'Gilroy',
         textTheme: const TextTheme(
             bodyMedium: TextStyle(color: Colors.white, fontSize: 16)),
-        primarySwatch: Colors.deepPurple,
+        primarySwatch: Colors.deepPurple
       ),
-      home: const LoginPage(),
+      home: LoginPage(),
     );
   }
 }

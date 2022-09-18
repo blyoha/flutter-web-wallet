@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
-import 'package:web_wallet/constants/constants.dart';
 
-import '../widgets/widgets.dart';
+import '../widgets/activation_code.dart';
+import '../widgets/welcome_content.dart';
 
 class LoginPage extends StatelessWidget {
   final TextEditingController _numberController = TextEditingController();
@@ -15,8 +14,6 @@ class LoginPage extends StatelessWidget {
   }
 
   _buildContent() {
-    const String description =
-        "Please confirm the country code and enter your phone number";
     const String icon = "assets/icons/webmoney-icon.png";
 
     return Padding(
@@ -42,30 +39,5 @@ class LoginPage extends StatelessWidget {
           //   child: NumPad(controller: _numberController),
           // )
         ]));
-  }
-
-  _buildNumberInput() {
-    var maskFormatter = MaskTextInputFormatter(
-        mask: "### ### ## ##", filter: {"#": RegExp(r"[0-9]")});
-
-    return Row(children: [
-      AppContainer(child: Text("RU +7", style: AppTexts.numberStyle)),
-      const SizedBox(width: 10),
-      Expanded(
-          child: AppContainer(
-              child: Center(
-                  child: TextField(
-                      keyboardType: TextInputType.number,
-                      showCursor: false,
-                      autofocus: true,
-                      decoration: const InputDecoration(
-                          border: InputBorder.none,
-                          contentPadding: EdgeInsets.symmetric(vertical: 0),
-                          isDense: true),
-                      inputFormatters: [maskFormatter],
-                      controller: _numberController,
-                      textAlign: TextAlign.center,
-                      style: AppTexts.numberStyle))))
-    ]);
   }
 }

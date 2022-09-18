@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:web_wallet/constants/constants.dart';
 
 import '../widgets/widgets.dart';
@@ -35,33 +35,37 @@ class LoginPage extends StatelessWidget {
               padding: const EdgeInsets.symmetric(vertical: 15),
               child: _buildNumberInput()),
           AppButton(text: "Send Code"),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 15),
-            child: NumPad(controller: _numberController),
-          )
+          // Removed custom NumPad due to the fact of text formatter unavailability.
+          //
+          // Padding(
+          //   padding: const EdgeInsets.symmetric(vertical: 15),
+          //   child: NumPad(controller: _numberController),
+          // )
         ]));
   }
 
   _buildNumberInput() {
-    var formatter = FilteringTextInputFormatter.allow(RegExp(r'[a-b]'));
+    var maskFormatter = MaskTextInputFormatter(
+        mask: "### ### ## ##", filter: {"#": RegExp(r"[0-9]")});
 
     return Row(children: [
-      AppContainer(child: Text("+7", style: AppTexts.numberStyle)),
+      AppContainer(child: Text("RU +7", style: AppTexts.numberStyle)),
       const SizedBox(width: 10),
       Expanded(
           child: AppContainer(
               child: Center(
                   child: TextField(
+                      keyboardType: TextInputType.number,
+                      showCursor: false,
+                      autofocus: true,
                       decoration: const InputDecoration(
                           border: InputBorder.none,
                           contentPadding: EdgeInsets.symmetric(vertical: 0),
                           isDense: true),
-                      inputFormatters: [formatter],
+                      inputFormatters: [maskFormatter],
                       controller: _numberController,
                       textAlign: TextAlign.center,
-                      showCursor: false,
-                      style: AppTexts.numberStyle,
-                      keyboardType: TextInputType.none))))
+                      style: AppTexts.numberStyle))))
     ]);
   }
 }

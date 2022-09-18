@@ -18,7 +18,10 @@ class AppTexts {
   static TextStyle secondaryStyle =
       TextStyle(color: AppColors.textColor2, fontSize: 15);
   static TextStyle headerStyle = TextStyle(
-      color: AppColors.textColor1, fontSize: 38, fontWeight: FontWeight.bold);
+      color: AppColors.textColor1, fontSize: 42, fontWeight: FontWeight.bold);
   static TextStyle numberStyle =
-      TextStyle(color: AppColors.textColor1, fontSize: 30);
+      TextStyle(color: AppColors.textColor1, fontSize: 28);
+  static TextStyle interactiveStyle = TextStyle(
+      color: AppColors.focusColor,
+      fontSize: 15);
 }

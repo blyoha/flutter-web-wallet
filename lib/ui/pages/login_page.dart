@@ -6,6 +6,8 @@ import '../widgets/welcome_content.dart';
 class LoginPage extends StatelessWidget {
   final TextEditingController _numberController = TextEditingController();
 
+  late bool codeSent = false;
+
   LoginPage({Key? key}) : super(key: key);
 
   @override
@@ -22,16 +24,9 @@ class LoginPage extends StatelessWidget {
           const SizedBox(height: 50),
           Image.asset(icon, width: 55, height: 55),
           const SizedBox(height: 80),
-          Text("Welcome!", style: AppTexts.headerStyle),
-          Container(
-            width: 250,
-            padding: const EdgeInsets.symmetric(vertical: 15),
-            child: Text(description, style: AppTexts.secondaryStyle),
-          ),
-          Container(
-              padding: const EdgeInsets.symmetric(vertical: 15),
-              child: _buildNumberInput()),
-          AppButton(text: "Send Code"),
+          codeSent
+              ? const ActivationCode()
+              : WelcomeContent(numberController: _numberController),
           // Removed custom NumPad due to the fact of text formatter unavailability.
           //
           // Padding(

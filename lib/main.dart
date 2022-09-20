@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:web_wallet/ui/pages/login_page.dart';
+import 'package:web_wallet/ui/pages/registration_page.dart';
 
 import 'constants/constants.dart';
 
@@ -27,7 +27,7 @@ class WebMoneyApp extends StatelessWidget {
             bodyMedium: TextStyle(color: Colors.white, fontSize: 16)),
         primarySwatch: Colors.deepPurple
       ),
-      home: LoginPage(),
+      home: RegistrationPage(),
     );
   }
 }

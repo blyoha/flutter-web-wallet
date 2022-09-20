@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import '../widgets/activation_code.dart';
 import '../widgets/welcome_content.dart';
 
-class LoginPage extends StatelessWidget {
+class RegistrationPage extends StatelessWidget {
   final TextEditingController _numberController = TextEditingController();
 
   late bool codeSent = false;
 
-  LoginPage({Key? key}) : super(key: key);
+  RegistrationPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

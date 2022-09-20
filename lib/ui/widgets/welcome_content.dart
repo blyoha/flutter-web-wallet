@@ -7,7 +7,8 @@ import 'widgets.dart';
 class WelcomeContent extends StatelessWidget {
   final TextEditingController numberController;
 
-  const WelcomeContent({Key? key, required this.numberController}) : super(key: key);
+  const WelcomeContent({Key? key, required this.numberController})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -29,27 +30,14 @@ class WelcomeContent extends StatelessWidget {
   }
 
   _buildNumberInput() {
-    var maskFormatter = MaskTextInputFormatter(
+    var numberMask = MaskTextInputFormatter(
         mask: "### ### ## ##", filter: {"#": RegExp(r"[0-9]")});
 
     return Row(children: [
       AppContainer(child: Text("RU +7", style: AppTexts.numberStyle)),
       const SizedBox(width: 10),
       Expanded(
-          child: AppContainer(
-              child: Center(
-                  child: TextField(
-                      keyboardType: TextInputType.number,
-                      showCursor: false,
-                      autofocus: true,
-                      decoration: const InputDecoration(
-                          border: InputBorder.none,
-                          contentPadding: EdgeInsets.symmetric(vertical: 0),
-                          isDense: true),
-                      inputFormatters: [maskFormatter],
-                      controller: numberController,
-                      textAlign: TextAlign.center,
-                      style: AppTexts.numberStyle))))
+          child: AppInput(numberController: numberController, mask: numberMask))
     ]);
   }
 }

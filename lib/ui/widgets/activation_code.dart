@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 import '../../constants/constants.dart';
 import 'widgets.dart';
@@ -32,18 +33,17 @@ class ActivationCode extends StatelessWidget {
   }
 
   _buildCodeInput() {
-    return Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-      _buildDigitInput(),
-      const SizedBox(width: 15),
-      _buildDigitInput(),
-      const SizedBox(width: 15),
-      _buildDigitInput(),
-      const SizedBox(width: 15),
-      _buildDigitInput()
-    ]);
-  }
+    final mask =
+        MaskTextInputFormatter(mask: '#', filter: {'#': RegExp(r'[0-9]')});
 
-  _buildDigitInput() {
-    return Expanded(child: AppContainer(child: TextField()));
+    return Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+      Expanded(child: AppInput(mask: mask, action: TextInputAction.next)),
+      const SizedBox(width: 15),
+      Expanded(child: AppInput(mask: mask, action: TextInputAction.next)),
+      const SizedBox(width: 15),
+      Expanded(child: AppInput(mask: mask, action: TextInputAction.next)),
+      const SizedBox(width: 15),
+      Expanded(child: AppInput(mask: mask))
+    ]);
   }
 }

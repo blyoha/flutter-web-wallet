@@ -18,7 +18,7 @@ class WelcomeContent extends StatelessWidget {
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       Text("Welcome!", style: AppTexts.headerStyle),
       Container(
-        width: 250,
+        width: 230,
         padding: const EdgeInsets.symmetric(vertical: 15),
         child: Text(description, style: AppTexts.secondaryStyle),
       ),
@@ -36,8 +36,7 @@ class WelcomeContent extends StatelessWidget {
     return Row(children: [
       AppContainer(child: Text("RU +7", style: AppTexts.numberStyle)),
       const SizedBox(width: 10),
-      Expanded(
-          child: AppInput(numberController: numberController, mask: numberMask))
+      Expanded(child: AppInput(mask: numberMask))
     ]);
   }
 }

@@ -4,20 +4,21 @@ import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import '../../constants/constants.dart';
 
 class AppInput extends StatelessWidget {
-  final TextEditingController numberController;
-  final MaskTextInputFormatter
-      mask; // MaskTextInputFormatter(mask: "### ### ## ##", filter: {"#": RegExp(r"[0-9]")})
+  // final TextEditingController numberController;
+  late MaskTextInputFormatter? mask;
 
-  const AppInput({Key? key, required this.numberController, required this.mask})
-      : super(key: key);
+  AppInput({Key? key, this.mask}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    mask ??= MaskTextInputFormatter();
+
     return Container(
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
           color: AppColors.secondaryColor),
       child: TextField(
+          // controller: numberController,
           keyboardType: TextInputType.number,
           showCursor: false,
           autofocus: true,
@@ -28,8 +29,7 @@ class AppInput extends StatelessWidget {
                   borderSide:
                       BorderSide(color: AppColors.focusColor, width: 2)),
               border: InputBorder.none),
-          inputFormatters: [mask],
-          controller: numberController,
+          inputFormatters: [mask!],
           textAlign: TextAlign.center,
           style: AppTexts.numberStyle),
     );

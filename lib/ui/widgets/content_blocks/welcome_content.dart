@@ -25,6 +25,7 @@ class WelcomeContent extends StatelessWidget {
       Padding(
           padding: const EdgeInsets.symmetric(vertical: 15),
           child: _buildNumberInput()),
+      const SizedBox(height: 8),
       AppButton(text: "Send Code")
     ]);
   }

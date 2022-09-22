@@ -24,9 +24,11 @@ class RegistrationPage extends StatelessWidget {
           const SizedBox(height: 50),
           Image.asset(icon, width: 55, height: 55),
           const SizedBox(height: 80),
-          codeSent
-              ? const ActivationCode()
-              : WelcomeContent(numberController: _numberController),
+          SizedBox(
+              height: 310,
+              child: codeSent
+                  ? const ActivationCode()
+                  : WelcomeContent(numberController: _numberController)),
           // Removed custom NumPad due to the fact of text formatter unavailability.
           //
           // Padding(

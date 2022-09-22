@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
+import 'package:flutter/services.dart';
+import 'package:pin_code_fields/pin_code_fields.dart';
 
 import '../../constants/constants.dart';
 import 'widgets.dart';
@@ -17,33 +18,44 @@ class ActivationCode extends StatelessWidget {
             alignment: Alignment.centerLeft,
             child: Text("Enter activation code", style: AppTexts.primaryStyle)),
       ),
-      _buildCodeInput(),
-      Padding(
-        padding: const EdgeInsets.symmetric(vertical: 15),
-        child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-          Text("A code has been sent to your phone",
-              style: AppTexts.secondaryStyle),
-          const SizedBox(height: 5),
-          const InteractiveText(text: "Request code again")
-        ]),
-      ),
-      const SizedBox(height: 10),
+      _buildCodeInput(context),
+      Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+        Text("A code has been sent to your phone",
+            style: AppTexts.secondaryStyle),
+        const SizedBox(height: 5),
+        const InteractiveText(text: "Request code again")
+      ]),
+      const SizedBox(height: 30),
       AppButton(text: "Confirm")
     ]);
   }
 
-  _buildCodeInput() {
-    final mask =
-        MaskTextInputFormatter(mask: '#', filter: {'#': RegExp(r'[0-9]')});
+  _buildCodeInput(context) {
+    final PinTheme pinTheme = PinTheme(
+        fieldWidth: 75,
+        fieldHeight: 75,
+        shape: PinCodeFieldShape.box,
+        activeColor: AppColors.secondaryColor,
+        selectedColor: AppColors.focusColor,
+        inactiveColor: AppColors.secondaryColor,
+        activeFillColor: AppColors.secondaryColor,
+        selectedFillColor: AppColors.secondaryColor,
+        inactiveFillColor: AppColors.secondaryColor,
+        borderRadius: BorderRadius.circular(20),
+        borderWidth: 2);
 
-    return Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-      Expanded(child: AppInput(mask: mask, action: TextInputAction.next)),
-      const SizedBox(width: 15),
-      Expanded(child: AppInput(mask: mask, action: TextInputAction.next)),
-      const SizedBox(width: 15),
-      Expanded(child: AppInput(mask: mask, action: TextInputAction.next)),
-      const SizedBox(width: 15),
-      Expanded(child: AppInput(mask: mask))
-    ]);
+    return PinCodeTextField(
+        appContext: context,
+        length: 4,
+        onChanged: (value) {},
+        inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+        keyboardType: TextInputType.number,
+        showCursor: false,
+        autoFocus: true,
+        autoUnfocus: true,
+        textStyle: AppTexts.numberStyle,
+        animationType: AnimationType.none,
+        enableActiveFill: true,
+        pinTheme: pinTheme);
   }
 }

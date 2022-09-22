@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
-import '../../constants/constants.dart';
-import 'widgets.dart';
+import '../../../constants/constants.dart';
+import '../widgets.dart';
 
 class WelcomeContent extends StatelessWidget {
   final TextEditingController numberController;

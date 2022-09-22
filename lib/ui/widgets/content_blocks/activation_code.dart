@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
-import '../../constants/constants.dart';
-import 'widgets.dart';
+import '../../../constants/constants.dart';
+import '../widgets.dart';
 
 class ActivationCode extends StatelessWidget {
   const ActivationCode({Key? key}) : super(key: key);

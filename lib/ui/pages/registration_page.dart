@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../widgets/activation_code.dart';
-import '../widgets/welcome_content.dart';
+import '../widgets/content_blocks/activation_code.dart';
+import '../widgets/content_blocks/welcome_content.dart';
 
 class RegistrationPage extends StatelessWidget {
   final TextEditingController _numberController = TextEditingController();

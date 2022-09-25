@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
+import '../../../blocs/registration_bloc.dart';
+import '../../../blocs/registration_event.dart';
 import '../../../constants/constants.dart';
 import '../widgets.dart';
 
@@ -12,6 +15,8 @@ class WelcomeContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final RegistrationBloc blocProvider =
+        BlocProvider.of<RegistrationBloc>(context);
     const String description =
         "Please confirm the country code and enter your phone number";
 
@@ -26,7 +31,12 @@ class WelcomeContent extends StatelessWidget {
           padding: const EdgeInsets.symmetric(vertical: 15),
           child: _buildNumberInput()),
       const SizedBox(height: 8),
-      AppButton(text: "Send Code")
+      AppButton(
+        text: "Send Code",
+        onPressed: () {
+          blocProvider.add(CodeSentEvent());
+        },
+      )
     ]);
   }
 

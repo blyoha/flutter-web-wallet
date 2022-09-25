@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:web_wallet/constants/constants.dart';
 
+import '../../blocs/registration_bloc.dart';
+import '../../blocs/registration_states.dart';
 import '../widgets/content_blocks/activation_code.dart';
 import '../widgets/content_blocks/welcome_content.dart';
 
@@ -12,7 +16,9 @@ class RegistrationPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: SafeArea(child: _buildContent()));
+    return BlocProvider(
+        create: (context) => RegistrationBloc(),
+        child: Scaffold(body: SafeArea(child: _buildContent())));
   }
 
   _buildContent() {
@@ -26,9 +32,21 @@ class RegistrationPage extends StatelessWidget {
           const SizedBox(height: 80),
           SizedBox(
               height: 310,
-              child: codeSent
-                  ? const ActivationCode()
-                  : WelcomeContent(numberController: _numberController)),
+              child: BlocBuilder<RegistrationBloc, RegistrationState>(
+                  builder: (context, state) {
+                if (state is RegistrationInitialState) {
+                  return WelcomeContent(numberController: _numberController);
+                }
+                if (state is RegistrationCodeSentState) {
+                  return const ActivationCode();
+                }
+                if (state is RegistrationErrorState) {
+                  return Center(
+                      child: Text("Couldn't send code.",
+                          style: AppTexts.headerStyle));
+                }
+                return Container();
+              }))
           // Removed custom NumPad due to the fact of text formatter unavailability.
           //
           // Padding(

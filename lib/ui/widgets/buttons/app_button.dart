@@ -3,9 +3,10 @@ import 'package:flutter/material.dart';
 import '../../../constants/constants.dart';
 
 class AppButton extends StatelessWidget {
+  Function? onPressed;
   String text;
 
-  AppButton({Key? key, this.text = ""}) : super(key: key);
+  AppButton({Key? key, this.onPressed, this.text = ""}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +18,9 @@ class AppButton extends StatelessWidget {
                 MaterialStateProperty.all<Color>(AppColors.focusColor),
             minimumSize: MaterialStateProperty.all(
                 Size(MediaQuery.of(context).size.width, 70))),
-        onPressed: null,
+        onPressed: () {
+          onPressed!();
+        },
         child: Text(text, style: AppTexts.primaryStyle));
   }
 }

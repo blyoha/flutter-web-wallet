@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
-import '../../../blocs/registration_bloc.dart';
-import '../../../blocs/registration_event.dart';
+import '../../../blocs/sign_in_bloc.dart';
+import '../../../blocs/sign_in_event.dart';
 import '../../../constants/constants.dart';
 import '../widgets.dart';
 

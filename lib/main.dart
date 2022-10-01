@@ -11,11 +11,11 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
-  runApp(const WebMoneyApp());
+  runApp(const WebWalletApp());
 }
 
-class WebMoneyApp extends StatelessWidget {
-  const WebMoneyApp({Key? key}) : super(key: key);
+class WebWalletApp extends StatelessWidget {
+  const WebWalletApp({Key? key}) : super(key: key);
 
   // This widget is the root of your application.
   @override

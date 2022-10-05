@@ -4,11 +4,11 @@ import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import '../../../constants/constants.dart';
 
 class AppInput extends StatelessWidget {
-  // final TextEditingController numberController;
+  final TextEditingController numberController;
   final TextInputAction action;
   late MaskTextInputFormatter? mask;
 
-  AppInput({Key? key, this.mask, this.action = TextInputAction.done})
+  AppInput({Key? key, this.mask, this.action = TextInputAction.done, required this.numberController})
       : super(key: key);
 
   @override
@@ -20,7 +20,7 @@ class AppInput extends StatelessWidget {
             borderRadius: BorderRadius.circular(20),
             color: AppColors.secondaryColor),
         child: TextField(
-            // controller: numberController,
+            controller: numberController,
             enableInteractiveSelection: false,
             keyboardType: TextInputType.number,
             style: AppTexts.numberStyle,

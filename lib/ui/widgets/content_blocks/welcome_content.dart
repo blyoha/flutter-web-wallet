@@ -8,6 +8,7 @@ import '../../../constants/constants.dart';
 import '../widgets.dart';
 
 class WelcomeContent extends StatelessWidget {
+  final String dialCode = '+7';
   final TextEditingController numberController;
 
   const WelcomeContent({Key? key, required this.numberController})
@@ -15,8 +16,7 @@ class WelcomeContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final RegistrationBloc blocProvider =
-        BlocProvider.of<RegistrationBloc>(context);
+    final SignInBloc blocProvider = BlocProvider.of<SignInBloc>(context);
     const String description =
         "Please confirm the country code and enter your phone number";
 
@@ -34,7 +34,8 @@ class WelcomeContent extends StatelessWidget {
       AppButton(
         text: "Send Code",
         onPressed: () {
-          blocProvider.add(CodeSentEvent());
+          String number = dialCode + numberController.text.replaceAll(' ', '');
+          blocProvider.add(SignInCodeSentEvent(phoneNumber: number));
         },
       )
     ]);
@@ -45,9 +46,10 @@ class WelcomeContent extends StatelessWidget {
         mask: "### ### ## ##", filter: {"#": RegExp(r"[0-9]")});
 
     return Row(children: [
-      AppContainer(child: Text("RU +7", style: AppTexts.numberStyle)),
+      AppContainer(child: Text("RU $dialCode", style: AppTexts.numberStyle)),
       const SizedBox(width: 10),
-      Expanded(child: AppInput(mask: numberMask))
+      Expanded(
+          child: AppInput(mask: numberMask, numberController: numberController))
     ]);
   }
 }

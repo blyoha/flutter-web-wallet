@@ -1,15 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
+import '../../../blocs/sign_in_bloc.dart';
+import '../../../blocs/sign_in_event.dart';
 import '../../../constants/constants.dart';
 import '../widgets.dart';
 
 class ActivationCode extends StatelessWidget {
-  const ActivationCode({Key? key}) : super(key: key);
+  TextEditingController controller = TextEditingController();
+  final String verificationId;
+
+  ActivationCode({Key? key, required this.verificationId}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final SignInBloc blocProvider = BlocProvider.of<SignInBloc>(context);
+
     return Column(children: [
       const SizedBox(height: 18),
       Padding(
@@ -26,7 +34,12 @@ class ActivationCode extends StatelessWidget {
         const InteractiveText(text: "Request code again")
       ]),
       const SizedBox(height: 30),
-      AppButton(text: "Confirm")
+      AppButton(
+          text: "Confirm",
+          onPressed: () {
+            blocProvider.add(SignInVerifiedSentCodeEvent(
+                smsCode: controller.text, verificationId: verificationId));
+          })
     ]);
   }
 
@@ -45,6 +58,7 @@ class ActivationCode extends StatelessWidget {
         borderWidth: 2);
 
     return PinCodeTextField(
+        controller: controller,
         appContext: context,
         length: 4,
         onChanged: (value) {},

@@ -45,8 +45,8 @@ class ActivationCode extends StatelessWidget {
 
   _buildCodeInput(context) {
     final PinTheme pinTheme = PinTheme(
-        fieldWidth: 75,
-        fieldHeight: 75,
+        fieldWidth: 50,
+        fieldHeight: 50,
         shape: PinCodeFieldShape.box,
         activeColor: AppColors.secondaryColor,
         selectedColor: AppColors.focusColor,
@@ -60,7 +60,7 @@ class ActivationCode extends StatelessWidget {
     return PinCodeTextField(
         controller: controller,
         appContext: context,
-        length: 4,
+        length: 6,
         onChanged: (value) {},
         inputFormatters: [FilteringTextInputFormatter.digitsOnly],
         keyboardType: TextInputType.number,

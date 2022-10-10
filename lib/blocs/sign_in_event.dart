@@ -7,8 +7,6 @@ class SignInCodeSentEvent extends SignInEvent {
   final String phoneNumber;
 
   SignInCodeSentEvent({required this.phoneNumber});
-
-  List<Object> get props => [phoneNumber];
 }
 
 // When user enters the sent code and presses "Confirm"
@@ -18,8 +16,6 @@ class SignInVerifiedSentCodeEvent extends SignInEvent {
 
   SignInVerifiedSentCodeEvent(
       {required this.smsCode, required this.verificationId});
-
-  List<Object> get props => [smsCode, verificationId];
 }
 
 // When Firebase sends a code to a user's phone (user awaits the code).
@@ -29,8 +25,6 @@ class SignInFirebaseCodeSentEvent extends SignInEvent {
 
   SignInFirebaseCodeSentEvent(
       {required this.verificationId, required this.token});
-
-  List<Object> get props => [verificationId];
 }
 
 // When the sent code is entered and user signs in
@@ -45,6 +39,4 @@ class SignInErrorEvent extends SignInEvent {
   final String error;
 
   SignInErrorEvent({required this.error});
-
-  List<Object> get props => [error];
 }
